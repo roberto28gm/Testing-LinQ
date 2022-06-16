@@ -30,11 +30,11 @@ namespace Forms_LinQ
         private void InitializeComponent()
         {
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btn_orderScore = new System.Windows.Forms.Button();
-            this.btn_orderName = new System.Windows.Forms.Button();
             this.Name = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Score = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btn_orderName = new System.Windows.Forms.Button();
+            this.btn_orderScore = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -54,36 +54,6 @@ namespace Forms_LinQ
             this.dataGridView1.Size = new System.Drawing.Size(355, 433);
             this.dataGridView1.TabIndex = 0;
             // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.btn_orderName);
-            this.groupBox1.Controls.Add(this.btn_orderScore);
-            this.groupBox1.Location = new System.Drawing.Point(373, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(232, 228);
-            this.groupBox1.TabIndex = 2;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Actions";
-            // 
-            // btn_orderScore
-            // 
-            this.btn_orderScore.Location = new System.Drawing.Point(6, 22);
-            this.btn_orderScore.Name = "btn_orderScore";
-            this.btn_orderScore.Size = new System.Drawing.Size(150, 23);
-            this.btn_orderScore.TabIndex = 0;
-            this.btn_orderScore.Text = "Order by Score";
-            this.btn_orderScore.UseVisualStyleBackColor = true;
-            this.btn_orderScore.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // btn_orderName
-            // 
-            this.btn_orderName.Location = new System.Drawing.Point(6, 51);
-            this.btn_orderName.Name = "btn_orderName";
-            this.btn_orderName.Size = new System.Drawing.Size(150, 23);
-            this.btn_orderName.TabIndex = 1;
-            this.btn_orderName.Text = "Order by Name";
-            this.btn_orderName.UseVisualStyleBackColor = true;
-            // 
             // Name
             // 
             this.Name.HeaderText = "Name";
@@ -96,6 +66,37 @@ namespace Forms_LinQ
             this.Score.HeaderText = "Score";
             this.Score.Name = "Score";
             this.Score.ReadOnly = true;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.btn_orderName);
+            this.groupBox1.Controls.Add(this.btn_orderScore);
+            this.groupBox1.Location = new System.Drawing.Point(373, 12);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(232, 228);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Actions";
+            // 
+            // btn_orderName
+            // 
+            this.btn_orderName.Location = new System.Drawing.Point(6, 51);
+            this.btn_orderName.Name = "btn_orderName";
+            this.btn_orderName.Size = new System.Drawing.Size(150, 23);
+            this.btn_orderName.TabIndex = 1;
+            this.btn_orderName.Text = "Order by Name";
+            this.btn_orderName.UseVisualStyleBackColor = true;
+            this.btn_orderName.Click += new System.EventHandler(this.btn_orderName_Click);
+            // 
+            // btn_orderScore
+            // 
+            this.btn_orderScore.Location = new System.Drawing.Point(6, 22);
+            this.btn_orderScore.Name = "btn_orderScore";
+            this.btn_orderScore.Size = new System.Drawing.Size(150, 23);
+            this.btn_orderScore.TabIndex = 0;
+            this.btn_orderScore.Text = "Order by Score";
+            this.btn_orderScore.UseVisualStyleBackColor = true;
+            this.btn_orderScore.Click += new System.EventHandler(this.btn_orderScore_Click);
             // 
             // Form1
             // 
