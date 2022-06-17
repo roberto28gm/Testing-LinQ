@@ -4,19 +4,19 @@ using System.Text;
 
 namespace Forms_LinQ
 {
+
+    class PlayerList
+    {
+        public List<Player> players { get; set; }
+    }
     class Player
     {
-        public string Name { get; set; }
-        public int Score { get; set; }
+        public string name { get; set; }
+        public int score { get; set; }
 
-        public Player(string name, int score)
-        {
-            Name = name;
-            Score = score;
-        }
         public override string ToString()
         {
-            return "{" + Name + " | " + Score + "}";
+            return "{" + name + " | " + score + "}";
         }
     }
 }
