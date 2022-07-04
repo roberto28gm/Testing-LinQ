@@ -24,7 +24,8 @@ namespace Forms_LinQ
             int initialScore = int.Parse(tbox_initialScore.Text);
             Player player = new Player(name, initialScore);
             string jsonPlayer = JsonSerializer.Serialize(player);
-            string path = Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + "\\playerData.json";
+            string workingDirectory = Environment.CurrentDirectory;
+            string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName + "\\playerData.json";
             string newJson;
 
             try

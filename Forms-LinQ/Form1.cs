@@ -88,9 +88,10 @@ namespace Forms_LinQ
             string json;
             try
             {
-                using (StreamReader r = new StreamReader(
-                    Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + 
-                    "\\playerData.json"))
+                string workingDirectory = Environment.CurrentDirectory;
+                string path = Directory.GetParent(workingDirectory).Parent.Parent.FullName;
+
+                using (StreamReader r = new StreamReader(path + "\\playerData.json"))
                 {
                     json = r.ReadToEnd();
                 }
