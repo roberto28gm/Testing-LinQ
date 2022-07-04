@@ -14,6 +14,16 @@ namespace Forms_LinQ
         public string name { get; set; }
         public int score { get; set; }
 
+        public Player()
+        {
+        }
+
+        public Player(string name, int score)
+        {
+            this.name = name;
+            this.score = score;
+        }
+
         public override string ToString()
         {
             return "{" + name + " | " + score + "}";

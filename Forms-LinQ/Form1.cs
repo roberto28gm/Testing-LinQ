@@ -16,16 +16,35 @@ namespace Forms_LinQ
 {
     public partial class Form1 : Form
     {
+        private PlayerList playerList;
+        private bool scoreDesc = false;
+        private bool nameDesc = false;
+        private int totalPlayers = 0;
+        private int higherScore = 0;
+        private float averageScore = 0;
+
+
         public Form1()
         {
             InitializeComponent();
             string playerData = getJsonStr();
-            
+
             try
             {
-                PlayerList playerList = JsonSerializer.Deserialize<PlayerList>(playerData);
+                playerList = JsonSerializer.Deserialize<PlayerList>(playerData);
                 var binding = new BindingList<Player>(playerList.players);
-                dataGridView1.DataSource = binding;
+                bindingSource1.DataSource = binding;
+                dataGridView1.DataSource = bindingSource1;
+
+                // Count and update label Current players
+                totalPlayers = playerList.players.Count();
+                lbl_totalPlayers.Text = $"Current Players: {totalPlayers}";
+
+                // Calculate max and average score
+                higherScore = playerList.players.Max(player => player.score);
+                averageScore = (float)playerList.players.Average(player => player.score);
+                lbl_maxScore.Text = $"Higher Score: {higherScore}";
+                lbl_averageScore.Text = $"Average Score: {averageScore.ToString("0.00")}";
             }
             catch (Exception ex)
             {
@@ -36,12 +55,32 @@ namespace Forms_LinQ
 
         private void btn_orderScore_Click(object sender, EventArgs e)
         {
-            // TODO order list by score
+            if (scoreDesc)
+            {
+                bindingSource1.DataSource = playerList.players.OrderByDescending(player => player.score);
+                this.scoreDesc = false;
+            }
+            else
+            {
+                bindingSource1.DataSource = playerList.players.OrderBy(player => player.score);
+                this.scoreDesc = true;
+            }
+            
         }
 
         private void btn_orderName_Click(object sender, EventArgs e)
         {
-            // TODO order list by name
+            if (nameDesc)
+            {
+                bindingSource1.DataSource = playerList.players.OrderByDescending(player => player.name);
+                this.nameDesc = false;
+            }
+            else
+            {
+                bindingSource1.DataSource = playerList.players.OrderBy(player => player.name);
+                this.nameDesc = true;
+            }
+            
         }
 
         private string getJsonStr()
@@ -50,7 +89,7 @@ namespace Forms_LinQ
             try
             {
                 using (StreamReader r = new StreamReader(
-                    Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) +
+                    Path.GetDirectoryName(Assembly.GetEntryAssembly().Location) + 
                     "\\playerData.json"))
                 {
                     json = r.ReadToEnd();
@@ -64,5 +103,28 @@ namespace Forms_LinQ
 
             return json;
         }
+
+        private void updatePlayerList()
+        {
+            string playerData = getJsonStr();
+            this.playerList = JsonSerializer.Deserialize<PlayerList>(playerData);
+            var binding = new BindingList<Player>(this.playerList.players);
+            bindingSource1.DataSource = binding;
+            dataGridView1.DataSource = bindingSource1;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frm_CreatePLayer CreatePlayerForm  = new frm_CreatePLayer();
+            CreatePlayerForm.Show();
+            CreatePlayerForm.FormClosed += new FormClosedEventHandler(Form_Closed);
+        }
+
+        private void Form_Closed(object sender, FormClosedEventArgs e)
+        {
+            frm_CreatePLayer frmCreatePlayer = (frm_CreatePLayer)sender;
+            updatePlayerList();
+        }
+
     }
 }

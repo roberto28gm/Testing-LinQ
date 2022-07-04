@@ -39,9 +39,10 @@ namespace Testing_LinQ
             players.OrderBy(p => p.Name).ToList().ForEach(x => Console.WriteLine(x.ToString()));
             
             Console.WriteLine("--== SCORES ==--\n\r");
-            
+
             // Higher score
-            Console.WriteLine($"Higher Score: {players.Max(x => x.ToString())}");
+            int maxScore = players.Max(x => x.Score);
+            Console.WriteLine($"Higher Score: {maxScore}");
         }
     }
 
